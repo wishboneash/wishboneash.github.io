@@ -28,7 +28,7 @@
 <body>
   <script type="text/javascript">
   function toggleMessenger(){
-    alert("AAAAAAA");
+    console.log("button clicked");
     Genesys("command", "Messenger.open", {},
       function(o){},  // if resolved
       function(o){    // if rejected
@@ -39,7 +39,7 @@
 </script>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
-<button id="custom-launcher" onclick="toggleMessenger">
+<button id="custom-launcher" onclick="toggleMessenger();">
   Messenger
 </button>
 </body>
