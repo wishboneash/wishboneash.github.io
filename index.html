@@ -36,11 +36,31 @@
       }
     );
   }
+  function sendEvents(){
+    console.log("sendEvents invoked");
+    var brand = document.getElementById(brand).value;
+    var country = document.getElementById(country).value;
+    var language = document.getElementById(language).value;
+    var email = document.getElementById(email).value;
+    console.log("Values " + brand + " "+ email+ " ");
+
+  }
 </script>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
 <button id="custom-launcher" onclick="toggleMessenger()">
   Toggle Messenger
 </button>
+<br>
+<input type="email" id="emailAddress" value="testemail@email.com"><br>
+<input type="text" id="brand" value="Electrolux"><br>
+<input type="text" id="language" value="EN"><br>
+<input type="text" id="country" value="UK"><br>
+
+<button id="custom-launcher" onclick="sendEvents()">
+  Send Events
+</button>
+
+
 </body>
 </html>
