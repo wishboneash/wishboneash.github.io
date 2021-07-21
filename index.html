@@ -41,9 +41,13 @@
     var brand = document.getElementById("brand").value;
     var country = document.getElementById("country").value;
     var language = document.getElementById("language").value;
-    var email = document.getElementById("emailAddress").value;
-    console.log("Values " + brand + " " + email + " ");
+    var emailAddress = document.getElementById("emailAddress").value;
+    console.log("Values " + brand + " " + email + " " + country + " " + language);
+    var brand = document.getElementById(brand).value;
 
+  
+    Genesys("command", "Journey.record", {
+       eventName: "CustomWebEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country}})
   }
 </script>
 <h1>Hello World</h1>
