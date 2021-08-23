@@ -49,6 +49,11 @@
     Genesys("command", "Journey.record", {
        eventName: "CustomWebEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country}})
   }
+  function toggleAndSend(){
+    console.log("toggleAndSend invoked")
+    toggleMessenger();
+    sendEvents();
+  }
 </script>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
@@ -64,7 +69,9 @@
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
 </button>
-
+<button id="custom-launcher2" onclick="toggleAndSend()">
+  Toggle and Send Events
+</button>
 
 </body>
 </html>
