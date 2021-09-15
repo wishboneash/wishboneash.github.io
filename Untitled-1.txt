@@ -1,0 +1,145 @@
+{
+  "entities": [
+    {
+      "id": "9cb878da-6735-47e7-91fd-832b35d89f52",
+      "correlationId": "d0eaae22-f602-4e16-b1df-56900ff9d0e1",
+      "customerId": "d4e218ef-bde9-4dde-86ff-1d6a41db11c0",
+      "customerIdType": "cookie",
+      "session": {
+        "id": "8a017f1e-f4d6-4299-a35b-fc492f81c37f",
+        "type": "web",
+        "selfUri": "/api/v2/journey/sessions/8a017f1e-f4d6-4299-a35b-fc492f81c37f"
+      },
+      "eventType": "com.genesys.journey.WebEvent",
+      "webEvent": {
+        "eventName": "CustomWebEvent",
+        "totalEventCount": 2,
+        "totalPageviewCount": 1,
+        "page": {
+          "url": "https://wishboneash.github.io/",
+          "domain": "wishboneash.github.io",
+          "hostname": "wishboneash.github.io",
+          "pathname": "/",
+          "breadcrumb": []
+        },
+        "userAgentString": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "browser": {
+          "family": "Chrome",
+          "version": "91.0.4472.124",
+          "lang": "en",
+          "viewHeight": 937,
+          "viewWidth": 718,
+          "featuresFlash": false,
+          "featuresJava": false,
+          "featuresPdf": true,
+          "featuresWebrtc": true
+        },
+        "device": {
+          "category": "desktop",
+          "type": "Unknown",
+          "isMobile": false,
+          "screenHeight": 1080,
+          "screenWidth": 1920,
+          "osFamily": "Windows NT",
+          "osVersion": "10.0"
+        },
+        "geolocation": {
+          "country": "PL",
+          "countryName": "Poland",
+          "latitude": 52.256099700927734,
+          "longitude": 21.002599716186523,
+          "locality": "Warsaw",
+          "postalCode": "00-213",
+          "region": "14",
+          "regionName": "Mazovia",
+          "source": "ip"
+        },
+        "ipAddress": "89.64.80.235",
+        "ipOrganization": "UPC Polska",
+        "attributes": {
+          "country": {
+            "dataType": "string",
+            "value": "UK"
+          },
+          "emailAddress": {
+            "dataType": "string",
+            "value": "hereismyemail1@email.com"
+          },
+          "language": {
+            "dataType": "string",
+            "value": "EN"
+          },
+          "brand": {
+            "dataType": "string",
+            "value": "Electrolux"
+          }
+        },
+        "traits": {},
+        "authenticated": false
+      },
+      "createdDate": "2021-07-21T09:23:09.177Z"
+    },
+    {
+      "id": "f2b4c2a5-d697-444f-bcbe-f4e5ef8b001e",
+      "correlationId": "1cffb23e-9b28-437a-ae45-24b8f0798200",
+      "customerId": "d4e218ef-bde9-4dde-86ff-1d6a41db11c0",
+      "customerIdType": "cookie",
+      "session": {
+        "id": "8a017f1e-f4d6-4299-a35b-fc492f81c37f",
+        "type": "web",
+        "selfUri": "/api/v2/journey/sessions/8a017f1e-f4d6-4299-a35b-fc492f81c37f"
+      },
+      "eventType": "com.genesys.journey.WebEvent",
+      "webEvent": {
+        "eventName": "page_viewed",
+        "totalEventCount": 1,
+        "totalPageviewCount": 1,
+        "page": {
+          "url": "https://wishboneash.github.io/",
+          "domain": "wishboneash.github.io",
+          "hostname": "wishboneash.github.io",
+          "pathname": "/",
+          "breadcrumb": []
+        },
+        "userAgentString": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "browser": {
+          "family": "Chrome",
+          "version": "91.0.4472.124",
+          "lang": "en",
+          "viewHeight": 937,
+          "viewWidth": 718,
+          "featuresFlash": false,
+          "featuresJava": false,
+          "featuresPdf": true,
+          "featuresWebrtc": true
+        },
+        "device": {
+          "category": "desktop",
+          "type": "Unknown",
+          "isMobile": false,
+          "screenHeight": 1080,
+          "screenWidth": 1920,
+          "osFamily": "Windows NT",
+          "osVersion": "10.0"
+        },
+        "geolocation": {
+          "country": "PL",
+          "countryName": "Poland",
+          "latitude": 52.256099700927734,
+          "longitude": 21.002599716186523,
+          "locality": "Warsaw",
+          "postalCode": "00-213",
+          "region": "14",
+          "regionName": "Mazovia",
+          "source": "ip"
+        },
+        "ipAddress": "89.64.80.235",
+        "ipOrganization": "UPC Polska",
+        "attributes": {},
+        "traits": {},
+        "authenticated": false
+      },
+      "createdDate": "2021-07-21T09:22:55.564Z"
+    }
+  ]
+}
