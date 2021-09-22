@@ -54,6 +54,10 @@
     toggleMessenger();
     sendEvents();
   }
+  function clearAndReload(){
+    localStorage.clear();
+    window.location.reload();
+  }
 </script>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
@@ -72,6 +76,10 @@
 <br>
 <button id="custom-launcher2" onclick="toggleAndSend()">
   Toggle and Send Events
+</button>
+<br>
+<button id="clear-and-reload" onclick="clearAndReload()">
+  Clear and reload page
 </button>
 
 </body>
