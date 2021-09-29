@@ -47,7 +47,7 @@
 
   
     Genesys("command", "Journey.record", {
-       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country}})
+       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, BaseURL: BaseURL }})
   }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
@@ -65,10 +65,12 @@
   Toggle Messenger
 </button>
 <br>
-<input type="email" id="emailAddress" value="testemail@email.com"><br>
+<input type="email" id="emailAddress" value="UNKNOWN"><br>
 <input type="text" id="brand" value="Zanussi"><br>
 <input type="text" id="language" value="EN"><br>
 <input type="text" id="country" value="UK"><br>
+<input type="text" id="BaseURL" value="https://electrolux.co.uk"><br>
+
 
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
