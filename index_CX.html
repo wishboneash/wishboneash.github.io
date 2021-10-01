@@ -42,15 +42,15 @@
     var country = document.getElementById("country").value;
     var language = document.getElementById("language").value;
     var emailAddress = document.getElementById("emailAddress").value;
-    var BaseURL = document.getElementById("BaseURL").value;
+    var baseURL = document.getElementById("BaseURL").value;
 
 
-    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + BaseURL);
+    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
 
 
   
     Genesys("command", "Journey.record", {
-       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, BaseURL: BaseURL }})
+       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, baseURL: baseURL }})
   }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
@@ -72,7 +72,7 @@
 <input type="text" id="brand" value="Electrolux"><br>
 <input type="text" id="language" value="EN"><br>
 <input type="text" id="country" value="UK"><br>
-<input type="text" id="BaseURL" value="https://electrolux.co.uk"><br>
+<input type="text" id="baseURL" value="https://electrolux.co.uk"><br>
 
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
