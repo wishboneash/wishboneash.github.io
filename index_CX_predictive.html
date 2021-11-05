@@ -24,6 +24,10 @@
     console.log("Invite offered, sending events!");
     sendEvents();
   });
+  Genesys("subscribe", "Engage.inviteAccepted" , function(o){
+    console.log("Invite accepted, sending events!");
+    sendEvents();
+  });
 </script>
     
     
