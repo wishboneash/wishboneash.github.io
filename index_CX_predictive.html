@@ -20,6 +20,11 @@
   Genesys("subscribe", "Launcher.ready" , function(o){
     console.log("The queue works!");
   });
+  Genesys("subscribe", "Engage.inviteOffered" , function(o){
+    console.log("Invite offered, sending events!");
+    sendEvents();
+  });
+  Gene
 </script>
     
     
