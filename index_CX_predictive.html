@@ -30,6 +30,11 @@
     console.log("Invite accepted, sending events!");
     sendEvents();
   });
+  Genesys('subscribe', 'Journey.qualifiedWebMessagingOffer', (data) => {
+    console.log('Journey.qualifiedWebMessagingOffer event!!!')
+    console.log('event data:', data)
+    
+});
 </script>
     
     
