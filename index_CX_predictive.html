@@ -37,11 +37,17 @@
   Genesys("subscribe", "Journey.ready", function(){
     console.log("Journey ready event!!!");
   setTimeout(function(){
-    Genesys("command", "Journey.record", { eventName: "display_messenger", customAttributes: { message: "Hesitate On Page"
+    Genesys("command", "Journey.record", { eventName: "idle_for_10_s", customAttributes: { message: "Hesitate On Page"
       }
     });
-  }, 15000);
-});
+  }, 10000);
+  setTimeout(function(){
+    Genesys("command", "Journey.record", { eventName: "idle_for_20_s", customAttributes: { message: "Hesitate On Page"
+      }
+    });
+  }, 20000);
+
+  });
 </script>
     
     
