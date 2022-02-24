@@ -80,6 +80,22 @@
     Genesys("command", "Journey.record", {
        eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, baseURL: baseURL }})
   }
+
+
+  function setAttrributes(){
+    console.log("setAttributes invoked");
+
+    Genesys("command", "Database.set", {
+  messaging: {
+    customAttributes: {
+      department: "sales",
+      property_type: "apartment",
+      device: "mobile"
+    }
+  }
+});
+
+  }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
     toggleMessenger();
