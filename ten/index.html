@@ -83,14 +83,27 @@
 
 
   function setAttrributes(){
+    
     console.log("setAttributes invoked");
+    var brand = document.getElementById("brand").value;
+    var country = document.getElementById("country").value;
+    var language = document.getElementById("language").value;
+    var emailAddress = document.getElementById("emailAddress").value;
+    var baseURL = document.getElementById("baseURL").value;
+
+    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
 
     Genesys("command", "Database.set", {
   messaging: {
     customAttributes: {
       department: "sales",
       property_type: "apartment",
-      device: "mobile"
+      device: "mobile",
+      brand: brand ,
+      country: country,
+      language: language,
+      emailAddress: emailAddress,
+      baseURL: baseURL
     }
   }
 });
@@ -113,7 +126,7 @@
 </button>
 <br>
 <input type="email" id="emailAddress" value="testemail@tengroup.com"><br>
-<input type="text" id="brand" value="Ten Lifestyle"><br>
+<input type="text" id="brand" value="TenLifestyle"><br>
 <input type="text" id="language" value="EN"><br>
 <input type="text" id="country" value="UK"><br>
 <input type="text" id="baseURL" value="https://tengroup.com"><br>
