@@ -59,6 +59,29 @@
     localStorage.clear();
     window.location.reload();
   }
+  function setAttrributes(){
+
+console.log("setAttributes invoked");
+var brand = document.getElementById("brand").value;
+var country = document.getElementById("country").value;
+var language = document.getElementById("language").value;
+var emailAddress = document.getElementById("emailAddress").value;
+var baseURL = document.getElementById("baseURL").value;
+
+console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
+
+Genesys("command", "Database.set", {
+messaging: {
+customAttributes: {
+  //here we set attributes
+  ATTR_country: country,
+  ATTR_language: language,
+  ATTR_emailAddress: emailAddress,
+  ATTR_baseURL: baseURL
+}
+}
+});
+
 </script>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
@@ -72,7 +95,10 @@
 <input type="text" id="country" value="UK"><br>
 <input type="text" id="BaseURL" value="https://electrolux.co.uk"><br>
 
-
+<button id="setAttributes" onclick="setAttrributes()">
+  Set Attributes - new method
+</button>
+<br>
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
 </button>
