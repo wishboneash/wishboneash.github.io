@@ -28,7 +28,8 @@
   });
   Genesys("subscribe", "Engage.inviteAccepted" , function(o){
     console.log("Invite accepted, sending events!");
-    sendEvents();
+    //sendEvents();
+    setAttrributes();
   });
   Genesys('subscribe', 'Journey.qualifiedWebMessagingOffer', (data) => {
     console.log('Journey.qualifiedWebMessagingOffer event!!!')
@@ -48,6 +49,30 @@
   }, 20000);
 
   });
+
+  function setAttrributes(){
+
+console.log("setAttributes invoked");
+var brand = document.getElementById("brand").value;
+var country = document.getElementById("country").value;
+var language = document.getElementById("language").value;
+var emailAddress = document.getElementById("emailAddress").value;
+var baseURL = document.getElementById("baseURL").value;
+
+console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
+
+Genesys("command", "Database.set", {
+messaging: {
+customAttributes: {
+  //here we set attributes
+  CHAT_country: country,
+  CHAT_language: language,
+  CHAT_emailAddress: emailAddress,
+  CHAT_baseURL: baseURL
+}
+}
+});
+  }
 </script>
     
     
