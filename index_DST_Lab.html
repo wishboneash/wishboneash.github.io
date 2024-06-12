@@ -12,8 +12,9 @@
     g[e].c = es;
     ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
   })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-    environment: 'euc1',
-    deploymentId: 'ef3399c0-7b32-406c-9d9b-b0729dc1399a'
+    environment: 'euw1',
+    deploymentId: '4ec3e7b0-6317-4374-8daf-9e908c0ec01c',
+    debug: true // optional - Enables Genesys browser console logging
   });
 </script>
     <script type="text/javascript" charset="utf-8">
@@ -41,14 +42,16 @@
     var brand = document.getElementById("brand").value;
     var country = document.getElementById("country").value;
     var language = document.getElementById("language").value;
-    var emailAddress = document.getElementById("emailAddress").value; 
-    var BaseURL = document.getElementById("BaseURL").value;
-    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + BaseURL);
+    var emailAddress = document.getElementById("emailAddress").value;
+    var baseURL = document.getElementById("baseURL").value;
+
+
+    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
 
 
   
     Genesys("command", "Journey.record", {
-       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, BaseURL: BaseURL }})
+       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, baseURL: baseURL }})
   }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
@@ -59,47 +62,19 @@
     localStorage.clear();
     window.location.reload();
   }
-function setAttrributes(){
-
-console.log("setAttributes invoked");
-var brand = document.getElementById("brand").value;
-var country = document.getElementById("country").value;
-var language = document.getElementById("language").value;
-var emailAddress = document.getElementById("emailAddress").value;
-var baseURL = document.getElementById("baseURL").value;
-
-console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
-
-Genesys("command", "Database.set", {
-messaging: {
-customAttributes: {
-  //here we set attributes
-  CHAT_country: country,
-  CHAT_language: language,
-  CHAT_emailAddress: emailAddress,
-  CHAT_baseURL: baseURL
-}
-}
-});
-  }
-
 </script>
-<h1>Hello World</h1>
+<h1>CX</h1>
 <p>I'm hosted with GitHub Pages.</p>
 <button id="custom-launcher" onclick="toggleMessenger()">
   Toggle Messenger
 </button>
 <br>
-<input type="email" id="emailAddress" value="UNKNOWN"><br>
-<input type="text" id="brand" value="Zanussi"><br>
+<input type="email" id="emailAddress" value="testemail@email.com"><br>
+<input type="text" id="brand" value="admiral"><br>
 <input type="text" id="language" value="EN"><br>
 <input type="text" id="country" value="UK"><br>
-<input type="text" id="baseURL" value="https://electrolux.co.uk"><br>
+<input type="text" id="baseURL" value="https://admiral.co.uk"><br>
 
-<button id="setAttributes" onclick="setAttrributes()">
-  Set Attributes - new method
-</button>
-<br>
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
 </button>
@@ -111,6 +86,7 @@ customAttributes: {
 <button id="clear-and-reload" onclick="clearAndReload()">
   Test button - Clear and reload page
 </button>
+
 
 </body>
 </html>
