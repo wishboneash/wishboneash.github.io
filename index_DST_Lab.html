@@ -59,7 +59,7 @@
 
   function setAttributes(){
     console.log("setAttributes invoked");
-    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: 'test@test.com' }}},
+    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: emailAddress }}},
 function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
 
 
