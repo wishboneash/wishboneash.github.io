@@ -23,7 +23,7 @@
   });
   Genesys("subscribe", "Database.ready", function() {
   console.log("Database plugin is ready.");
-  document.getElementById('setAttributes').innerHTML = "Set Attributes - I am ready!";
+  document.getElementById("setAttributes").innerHTML = "Set Attributes - I am ready!";
 });
 </script>
     
@@ -95,9 +95,9 @@ function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
   Send Events
 </button>
 <br>
-<button id="setAttributes" onclick="setAttributes()" name="some button">
+<button id="setAttributes" onclick="setAttributes()">
+  set attributes - not ready
 </button>
-ready?
 <br>
 <button id="custom-launcher2" onclick="toggleAndSend()">
   Toggle and Send Events
