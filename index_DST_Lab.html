@@ -53,6 +53,14 @@
     Genesys("command", "Journey.record", {
        eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, baseURL: baseURL }})
   }
+
+  function setAttributes(){
+    console.log("setAttributes invoked");
+    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: 'test@test.com' }}},
+function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
+
+
+  }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
     toggleMessenger();
@@ -80,6 +88,10 @@
 
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
+</button>
+<br>
+<button id="setAttributes" onclick="setAttributes()">
+  Set custom attributes
 </button>
 <br>
 <button id="custom-launcher2" onclick="toggleAndSend()">
