@@ -22,7 +22,8 @@
     console.log("The queue works!");
   });
   Genesys("subscribe", "Database.ready", function() {
-  console.log("Database plugin is ready.")
+  console.log("Database plugin is ready.");
+  document.getElementById('setAttributes').innerHTML = "Set Attributes - I am ready!";
 });
 </script>
     
