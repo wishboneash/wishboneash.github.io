@@ -61,10 +61,15 @@
   function setAttributes(){
     console.log("setAttributes invoked");
     var emailAddress = document.getElementById("emailAddress").value;
-    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: emailAddress }}},
+    var baseURL = document.getElementById("baseURL").value;
+    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: emailAddress, baseURL: baseURL }}},
 function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
 
 
+  }
+
+  function getBaseURL(){
+    document.getElementById("baseURL").value = "test"
   }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
