@@ -69,7 +69,7 @@ function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
   }
 
   function getBaseURL(){
-    document.getElementById("baseURL").value = "test"
+    document.getElementById("baseURL").value = window.location.href
   }
   function toggleAndSend(){
     console.log("toggleAndSend invoked")
@@ -108,6 +108,9 @@ baseURL: <input type="text" id="baseURL" value="https://admiral.co.uk"><br>
   Toggle and Send Events
 </button>
 <br> -->
+<button id="populateURL" onclick="getBaseURL()">
+  Put current URL
+</button>
 <button id="clear-and-reload" onclick="clearAndReload()">
   Test button - Clear and reload page
 </button>
