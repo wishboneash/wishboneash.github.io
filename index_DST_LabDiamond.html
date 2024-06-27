@@ -41,6 +41,20 @@
       }
     );
   }
+
+  function toggleLauncher(){
+    console.log("launcher toggle invoked")
+    Genesys("command", "Launcher.show",
+{},
+    function() {
+        /*fulfilled callback*/
+    },
+    function() {
+        /*rejected callback*/
+        Genesys("command", "Launcher.hide");
+    }
+);
+  }
   function sendEvents(){
     console.log("sendEvents invoked");
     var brand = document.getElementById("brand").value;
@@ -86,10 +100,16 @@ function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
 <p><a href="index_DST_Lab2.html">LAB2</a></p>
 <p><a href="http://wishboneash.s3-website.eu-west-3.amazonaws.com/">external site</a></p>
 
-<button id="custom-launcher" onclick="toggleMessenger()">
+<button id="custom-launcher" onclick="toggleLauncher()">
+  Toggle Launcher
+</button>
+<br>
+
+<button id="custom-messenger" onclick="toggleMessenger()">
   Toggle Messenger
 </button>
 <br>
+
 emailAddress: <input type="email" id="emailAddress" value="testemail@email.com"><br>
 brand: <input type="text" id="brand" value="admiral"><br>
 language: <input type="text" id="language" value="EN"><br>
