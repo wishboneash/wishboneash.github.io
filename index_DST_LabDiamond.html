@@ -24,6 +24,7 @@
   Genesys("subscribe", "Database.ready", function() {
   console.log("Database plugin is ready.");
   document.getElementById("setAttributes").innerHTML = "Set Attributes - I am ready!";
+  document.getElementById("events").innerText = "Message received!"
 });
 </script>
     
@@ -115,6 +116,7 @@ brand: <input type="text" id="brand" value="admiral"><br>
 language: <input type="text" id="language" value="EN"><br>
 country: <input type="text" id="country" value="UK"><br>
 baseURL: <input type="text" id="baseURL" value="https://admiral.co.uk"><br>
+events: <input type="text" id="events" value=""><br>
 
 <!-- <button id="custom-launcher" onclick="sendEvents()">
   Send Events
