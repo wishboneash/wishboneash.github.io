@@ -24,8 +24,15 @@
   Genesys("subscribe", "Database.ready", function() {
   console.log("Database plugin is ready.");
   document.getElementById("setAttributes").innerHTML = "Set Attributes - I am ready!";
-  document.getElementById("events").value = "Message received!"
+  
 });
+// message notification
+Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
+    console.log(data);
+    document.getElementById("events").value = "Message received!" + data
+
+});
+
 </script>
     
     
