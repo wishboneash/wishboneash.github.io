@@ -29,7 +29,7 @@
 // message notification
 Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
     console.log(data);
-    document.getElementById("events").value = "Message received!" + data
+    document.getElementById("events").value = "Message received!"
 
 });
 
