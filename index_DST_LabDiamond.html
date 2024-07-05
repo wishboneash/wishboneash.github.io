@@ -30,6 +30,7 @@
 Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
     console.log(data);
     document.getElementById("events").value = "Message received!"
+    document.getElementById("events").style.color = "yellow"
 
 });
 
