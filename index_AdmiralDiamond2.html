@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <script type="text/javascript" charset="utf-8">
+  (function (g, e, n, es, ys) {
+    g['_genesysJs'] = e;
+    g[e] = g[e] || function () {
+      (g[e].q = g[e].q || []).push(arguments)
+    };
+    g[e].t = 1 * new Date();
+    g[e].c = es;
+    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+    environment: 'euw2',
+    deploymentId: '03368bad-557b-49e8-8be1-cdd9e3a54ebf',
+    debug: true // optional - Enables Genesys browser console logging
+  });
+</script>
+    <script type="text/javascript" charset="utf-8">
+  Genesys("subscribe", "Launcher.ready" , function(o){
+    console.log("The queue works!");
+  });
+</script>
+    
+    
+  </head>
+  
+<body>
+  <script type="text/javascript">
+  function toggleMessenger(){
+    console.log("button clicked");
+    Genesys("command", "Messenger.open", {},
+      function(o){},  // if resolved
+      function(o){    // if rejected
+        Genesys("command", "Messenger.close");
+      }
+    );
+  }
+  function sendEvents(){
+    console.log("sendEvents invoked");
+    var brand = document.getElementById("brand").value;
+    var country = document.getElementById("country").value;
+    var language = document.getElementById("language").value;
+    var emailAddress = document.getElementById("emailAddress").value;
+    var baseURL = document.getElementById("baseURL").value;
+
+
+    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
+
+
+  
+    Genesys("command", "Journey.record", {
+       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, baseURL: baseURL }})
+  }
+  function toggleAndSend(){
+    console.log("toggleAndSend invoked")
+    toggleMessenger();
+    sendEvents();
+  }
+  function clearAndReload(){
+    localStorage.clear();
+    window.location.reload();
+  }
+</script>
+<h1>Test Diamond2</h1>
+<p>I'm hosted with GitHub Pages.</p>
+<button id="custom-launcher" onclick="toggleMessenger()">
+  Toggle Messenger
+</button>
+<br>
+<input type="email" id="emailAddress" value="testemail@email.com"><br>
+<input type="text" id="brand" value="Diamond"><br>
+<input type="text" id="language" value="EN"><br>
+<input type="text" id="country" value="UK"><br>
+<input type="text" id="baseURL" value="https://admiral.co.uk"><br>
+<!--  
+<button id="custom-launcher" onclick="sendEvents()">
+  Send Events
+</button>
+<br>
+<button id="custom-launcher2" onclick="toggleAndSend()">
+  Toggle and Send Events
+</button>
+<br>
+-->
+<button id="clear-and-reload" onclick="clearAndReload()">
+  Test button - Clear and reload page
+</button>
+
+
+</body>
+</html>
