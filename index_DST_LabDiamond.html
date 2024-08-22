@@ -11,7 +11,45 @@
     g[e].t = 1 * new Date();
     g[e].c = es;
     ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+   
+    let done = 0
+
+g[e]('subscribe', 'Messenger.ready', function() {
+        if (done) return
+        done = 1
+ 
+        console.log('Messenger.Ready')
+
+        
+  
+        g[e]('subscribe', 'Messenger.opened', function() {
+            console.log('Opened')
+ 
+            window.Genesys('command', 'Database.set', {
+                messaging: {
+                    customAttributes: {
+                        name: 'Abdellatif Amira, INI DOS',
+                        custEmployeeId: '34234234',
+                        custNTAccount: 'taaabam3',
+                        chatChannel: 'ITServiceDesk'
+                    }
+                },
+            }, function() {
+               
+console.log("Database.set updated!");
+            }, function(e) {
+               
+console.error("Error calling Database.set", e);
+            })
+        })
+ 
+        g[e]('subscribe', 'MessagingService.started', function() {
+            console.log('Started')
+        })
+ 
+    })
+  })
+  (window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
     environment: 'euw1',
     deploymentId: '3ad52ec9-3c52-425b-8400-496bcc90a28f',
     debug: true // optional - Enables Genesys browser console logging
