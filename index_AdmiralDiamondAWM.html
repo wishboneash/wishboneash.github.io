@@ -16,6 +16,96 @@
     deploymentId: '79f27389-6c78-4f19-bc4b-6842e29129b2',
     debug: true // optional - Enables Genesys browser console logging
   });
+
+/// from https://genesyscloudblueprints.github.io/messenger-authentication-okta-integration-blueprint/oauth.html
+
+// OpenId Authentication setup
+
+			// AuthProvider plugin written by the brand
+
+			Genesys('registerPlugin', 'AuthProvider', (AuthProvider) => {
+				// COMMANDS
+
+				// getAuthCode
+				// getTokens
+				// setTokens
+
+				/* Register Commands */
+
+				AuthProvider.registerCommand('getAuthCode', (e) => {
+					const { forceUpdate } = e.data || {};
+					if (forceUpdate) {
+						ndAuthLoginBtn.click(); // simulate the login click.
+						e.resolve();
+					} else {
+						const sData = {
+							authCode: brandAuthCode,
+							redirectUri: `${sRedirectURL}`,
+							nonce: sNonce,
+						};
+
+						if (maxAge) sData.maxAge = parseInt(maxAge);
+						if (bPKCE && verifier) sData.codeVerifier = verifier;
+
+						e.resolve(sData);
+					}
+				});
+
+				AuthProvider.registerCommand('reAuthenticate', (e) => {
+					// Brand can handle this how ever they want.
+					// This command will be called when current refreshToken and/or authCode are no more valid. User needs to re-login here to provide us new authCode and/or refreshToken.
+					ndAuthLoginBtn.click(); // simulate the login click.
+					e.resolve();
+				});
+
+				AuthProvider.subscribe('Auth.ready', () => {
+					bAuthenticated = AuthProvider.data('Auth.authenticated');
+					toggleLogin();
+				});
+
+				AuthProvider.subscribe('Auth.authenticated', () => {
+					bAuthenticated = true;
+					hideProgress();
+					// LocalStorage usage is must for this product
+					localStorage.setItem('authFetching', false);  // eslint-disable-line
+					toggleLogin();
+				});
+
+				AuthProvider.subscribe('Auth.error', (error) => {
+					const { message } = error.data || {};
+
+					hideProgress();
+					// 'message' here is provided by our API and its always expected to be in string. Any security scan results are false postive in this case.
+					console.log("Auth Error", message);
+					// LocalStorage usage is must for this product
+					localStorage.setItem('authFetching', false); // eslint-disable-line
+				});
+
+				AuthProvider.subscribe('Auth.authError', (error) => {
+					hideProgress();
+					// 'message' here is provided by our API and its always expected to be in string. Any security scan results are false postive in this case.
+					console.log("Auth Error", error);
+					// LocalStorage usage is must for this product
+					clearStorage();
+				});
+
+				/* Handlers */
+
+				ndAuthLogoutBtn.onclick = function () {
+					AuthProvider.command('Auth.logout')
+						.finally(() => {
+							bAuthenticated = false;
+							if (authClient) authClient.signOut();
+							toggleLogin();
+							clearStorage();
+						});
+				};
+
+				// Tell CXBus your plugin is ready (mandatory)
+				AuthProvider.ready();
+			});
+
+///
 </script>
     <script type="text/javascript" charset="utf-8">
   Genesys("subscribe", "Launcher.ready" , function(o){
