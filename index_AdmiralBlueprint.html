@@ -13,84 +13,10 @@
     ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
   })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
     environment: 'euw2',
-    deploymentId: '79f27389-6c78-4f19-bc4b-6842e29129b2',
+    deploymentId: '0194178a-39bf-4364-9a4b-b50ecf567296',
     debug: true // optional - Enables Genesys browser console logging
   });
-
-/// from https://genesyscloudblueprints.github.io/messenger-authentication-okta-integration-blueprint/oauth.html
-
-// OpenId Authentication setup
-
-			// AuthProvider plugin written by the brand
-
-      Genesys('registerPlugin', 'AuthProvider', (AuthProvider) => {
-
-// COMMAND
-// *********
-// getAuthCode
-// reAuthenticate
-
-/* Register Command - mandatory */
-
-AuthProvider.registerCommand('getAuthCode', (e) => {
-
-// Add the necessary logic and resolve with the authCode and redirectUri provided by your Authentication provider. Messenger will call this command to get the the tokens.
-
-e.resolve({
-  authCode: "",       // pass your authorization code here
-  redirectUri: "",  // pass the redirection URI configured in your Authentication provider here
-  nonce:"",               // pass the random string preferably in uuid format. Applicable for OKTA provider.
-  maxAge: "<your maxAge>",             // pass elapsed time in seconds. Applicable for OKTA provider and it is an optional parameter.
-  codeVerifier: "<your code verifier>", // pass your code verifier here when PKCE flow is enabled
-  iss: "<your iss>"                   // pass your iss here. It is an optional parameter provided in the authorization response by your Authentication provider.
-});
-
-      });
-
-AuthProvider.registerCommand('reAuthenticate', (e) => {
-  
-// Messenger will call this command when current refreshToken and/or authCode are no more valid. Brand can add logic here to simply re-login and resolve this command after successful login so that Messenger can get the new authCode. (In case when browser needs to reload for a login, there is no need to resolve this command). Note: After a successful re-login, calling the getAuthCode command is taken care internally and there is no need to call it explicitly again.
-
-document.getElementById('myLoginButton').click(); // simulate the login button click
-e.resolve();
-});
-
-/* Subscribe to Auth plugin events */
-
- AuthProvider.subscribe('Auth.loggedOut', () => {
-   // This event is published across the browser tabs/devices where the user is logged in, so you can do something on logout.
-    // For example, clear any authenticated flags that you might have set during login.
- });
-
-/* Subscribe to Auth plugin events - optional */
-
-AuthProvider.subscribe('Auth.authError', (error) => {
-
-  // This event is published across the browser tabs/devices where the user is logged in, so you can do something on logout.
-  // For example, clear any authenticated flags that you might have set during login.
-});
-
-/* Click Handlers */
-
-// Handle logout
-document.getElementById('myButton').onclick = function () {
-
-  AuthProvider.command('Auth.logout').then(() => {
-    // Do something on logout.
-  // For example, clear any authenticated flags that you might have set on login
-  });
-};
-
-// Tell Messenger that your plugin is ready (mandatory)
-AuthProvider.ready();
-console.log("DST AuthProvider ready")
-});			
-
-      
-
-///
 </script>
-
     <script type="text/javascript" charset="utf-8">
   Genesys("subscribe", "Launcher.ready" , function(o){
     console.log("The queue works!");
@@ -179,7 +105,7 @@ function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
     window.location.reload();
   }
 </script>
-<h1>Diamond AWM 1</h1>
+<h1>Blueprint (0194178a-39bf-4364-9a4b-b50ecf567296)</h1>
 <p>I'm hosted with GitHub Pages.</p>
 <p><a href="index_DST_Lab2.html">LAB2</a></p>
 <p><a href="http://wishboneash.s3-website.eu-west-3.amazonaws.com/">external site</a></p>
@@ -221,13 +147,6 @@ events: <input type="text" id="events" value=""><br>
 <button id="clear-and-reload" onclick="clearAndReload()">
   Test button - Clear and reload page
 </button>
-<button id="myLoginButton" onclick="clearAndReload()">
-  myLoginButton
-</button>
-<button id="myButton" onclick="clearAndReload()">
-  myButton
-</button>
-
 
 
 </body>
