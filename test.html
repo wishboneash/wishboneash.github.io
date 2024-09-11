@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Test page</title>
+</head>
+<script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments)
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+      environment: 'euw2',
+      deploymentId: 'ebafd91b-4321-4ae7-9f2b-d9c869cfcf37',
+      debug: true // optional - Enables Genesys browser console logging
+    });
+
+</script>
+<script>
+
+function login() {
+    input1 = document.getElementById("input1").value;
+    var url = window.location.href;
+    console.log(url);
+    console.log(input1);
+    window.localation.href = input1;
+    console.log(window.location.href);
+    
+}
+
+</script>
+
+<body>
+
+    <textarea name="" id=""></textarea>
+    <input type="text" id="input1" value="https://login.microsoftonline.com/0c2f21c9-be70-4d25-9255-899b90992b1c/oauth2/v2.0/authorize">
+    
+    <button name="" id="btnLogin" onclick="login()">login</button>
+
+    
+</body>
+</html>
