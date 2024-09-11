@@ -27,18 +27,20 @@ function login() {
     var url = window.location.href;
     console.log(url);
     console.log(input1);
+    document.getElementById("textarea1").value = input1;
     window.localation.href = input1;
     console.log(window.location.href);    
+    
 }
 
 </script>
 
 <body>
 
-    <textarea name="" id=""></textarea>
     <input type="text" id="input1" value="https://login.microsoftonline.com/0c2f21c9-be70-4d25-9255-899b90992b1c/oauth2/v2.0/authorize">
     
     <button name="" id="btnLogin" onclick="login()">login</button>
+    <textarea id="textarea1"></textarea>
 
     
 </body>
