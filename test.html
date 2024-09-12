@@ -14,26 +14,88 @@
       g[e].c = es;
       ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
     })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-      environment: 'euw2',
-      deploymentId: 'ebafd91b-4321-4ae7-9f2b-d9c869cfcf37',
+      environment: 'prod-euc1',
+      deploymentId: '43d1c86d-8dd1-4208-8de6-e6ef653fbc2d',
       debug: true // optional - Enables Genesys browser console logging
     });
 
 </script>
 <script>
 
+url_default = window.location.href
 function login() {
     input1 = document.getElementById("input1").value;
     var url = window.location.href;
+    var client_id = "4079ed51-2dc3-46d8-b1fb-70c841074ef6" //application id from Azure
+    var scope = "openid profile email offline_access"
+    var response_type = "code"
+    var redirect_uri = url
     console.log(url);
     console.log(input1);
     document.getElementById("textarea1").value = input1;
-    window.localation.href = input1;
+    window.location.href = input1 + "?client_id=" + client_id + "&scope=" + scope +
+     "&response_type=" + response_type + "&redirect_uri=" + redirect_uri
     console.log(window.location.href);    
-    
+    //plugin()
 }
+function plugin(){
+    console.log("plugin start!, url_default: " + url_default)
+var code = "0.AU4AySEvDHC-JU2SVYmbkJkrHFHteUDDLdhGsftwyEEHTvYOAQA.AgABBAIAAAApTwJmzXqdR4BN2miheQMYAwDs_wUA9P9C_TgxpJWG3XCOTHB9vXy1DuDhT8ZBulcGeYvYtNlwvZsTiW1EQJVcy8x99qmqCUx42iqGFNrWS8tPI-MMv6f3-g9A0mApazn6n-Kztv4ofHHar7cmnywmIu-3tN0JlUJQ86MNaT6QqUWpun7BnfG-biwz2yR3vhI1uxym4CfXVjCYGm74gJoqSKMoPsp8w3FpEeT9BZ1JsPR-foIqcubxEkCApVq32_fkw0yuHsjcQlNq1z7_lYekvXiHeGuT2F2mH1RS7rk9KIlNTiUqE-qZgjpXCxB2EkKIIHsY3LBqSVNoImu95aO6lgjO91VtPti9k0AUgaw8Xi8JwK-JiZ27AguQAZ0Bq1VE3RM60lXCJF-gU35tZHsYtYSWLlsenfiilMJfzQXgF_8vaHIto-VWdRfr0Xx0DjeNxZpyn5-PQG7qE1t5V8g5Njiguojk5eKOf3BpAhfJBeCPpYf76OilktoNW1xQWbJJJCCbpVBixGqAnUBACJcQONh88I6KDbJcCrMtQz9VvQr8nLYtblSXcu69rUgxFcut2yeb91xjuMrcD6DwM22sViMBqjMoeecEQNiwKwrSldNwgxc1Lfw03ys7goZ8Mj48aBvrC0zBe9vw_9V4DWqWFg00dDScre0n-zllgvTXZngaLXAwaKJAKYrKrNwL6cwTWYxoX82kr_yhdbLehsN2X7GcrGUSHkrLkHuXBDhgNPWi--laaZewpIxKDCWksQ-dImUY64ldfGyWeQ&session_state=4f14b146-55c6-4668-ad63-5cfd1ba29751#" 
+
+Genesys('registerPlugin', 'AuthProvider', (AuthProvider) => {
+          AuthProvider.registerCommand('getAuthCode', (e) => {
+            //const urlParams = new URLSearchParams(window.location.search);
+            //const authCode = urlParams.has('code') ? urlParams.get('code') : ""
+            const authCode = "0.AU4AySEvDHC-JU2SVYmbkJkrHFHteUDDLdhGsftwyEEHTvYOAQA.AgABBAIAAAApTwJmzXqdR4BN2miheQMYAwDs_wUA9P-5CZI_Bzf2OBZfr_WuM-UfNjDhKZI-tYeiD-K8D7tDwf_21cvZx4ZkhY4sY7rGix6w9f_XphtAT82gLR57bTQTSOgtnpMlOxalBZBv-gFBr46o0jFDdl_6oaq12d2Ijrl4NpUW3_jyEt3s8gHXiTsn9m5E7bkxcjItqMSpAR3-YutYBh3kdeXq1a0HnU-3mwBMA87DrZAi23uvRVIyyA2oqzVkokp1rj8fitcyNux0sdn7lxbnFjT65qA6wcymjrUIGoshF9ztqd_fdxPKeTkGnLrPNNpLixbngjyM3s_5AqhfK7SMF0Ydmq1Mgv4HemUD-0BtqVqahF92VQfg5960BmNmYIUpc1UBWIl7PvUuUqImrluWG-wIFFpS9ysZ2pqYurAdkpbXsLFrWFmyes96z-Ejp9xDVK-w8weJgr7qW0XHGqkp-N1XRMrPzLfR0dkemo3pmPtR3GSeQg3jK39fYvMklxq4-B5XscVfoM6KyK_crSXaBbASQmYj-AaiY_4QgJ7y2dqpYOD2QrbNyNHLD2RxjkvqeJVoEGw7KSr8nn9y5v38_4qAspLDBqw1S5EYH7B5wbhZH0LjqEYSDpp0ikWxlUpPSoTip7z4muML5aHzoQ8onZM00OhERgozg1W8k6XHEeuL4g1_MZhz3EdNAmcax-skaYvwV6Osktp4gA0j4kHt1wx8PRBU9HOxZ_I_j7rT6gVQMMWLyLb6PAyPEkB7wy_nD5s-jwlpEHzCnrxA409wyNTH&session_state=e3dc8d28-a1eb-4436-9f83-b417a243e626#"
+            const redirectUri = "http://localhost:5500/test.html";
+            console.log(`getAuthCode called, code: ${authCode}, redirectUri: ${redirectUri}`);
+            e.resolve({
+              authCode: authCode,
+              redirectUri: redirectUri
+            })
+          });
+          AuthProvider.subscribe('Auth.ready', () => {
+            console.log("Auth plugin ready");
+          });
+          AuthProvider.subscribe('Auth.authenticated', (jwt,refreshToken) => {
+            console.log("Auth.authenticated");
+          });
+          AuthProvider.subscribe('Auth.authError', (e) => {
+            console.log("Auth.authError");
+            console.log(JSON.stringify(e, null, 4));
+          });
+          AuthProvider.ready();
+        });
+        }
 
 </script>
+<script>
+    Genesys('registerPlugin', 'AuthProvider', (AuthProvider) => {
+          AuthProvider.registerCommand('getAuthCode', (e) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            //const authCode = urlParams.has('code') ? urlParams.get('code') : ""
+            const authCode = "0.AU4AySEvDHC-JU2SVYmbkJkrHFHteUDDLdhGsftwyEEHTvYOAQA.AgABBAIAAAApTwJmzXqdR4BN2miheQMYAwDs_wUA9P9C_TgxpJWG3XCOTHB9vXy1DuDhT8ZBulcGeYvYtNlwvZsTiW1EQJVcy8x99qmqCUx42iqGFNrWS8tPI-MMv6f3-g9A0mApazn6n-Kztv4ofHHar7cmnywmIu-3tN0JlUJQ86MNaT6QqUWpun7BnfG-biwz2yR3vhI1uxym4CfXVjCYGm74gJoqSKMoPsp8w3FpEeT9BZ1JsPR-foIqcubxEkCApVq32_fkw0yuHsjcQlNq1z7_lYekvXiHeGuT2F2mH1RS7rk9KIlNTiUqE-qZgjpXCxB2EkKIIHsY3LBqSVNoImu95aO6lgjO91VtPti9k0AUgaw8Xi8JwK-JiZ27AguQAZ0Bq1VE3RM60lXCJF-gU35tZHsYtYSWLlsenfiilMJfzQXgF_8vaHIto-VWdRfr0Xx0DjeNxZpyn5-PQG7qE1t5V8g5Njiguojk5eKOf3BpAhfJBeCPpYf76OilktoNW1xQWbJJJCCbpVBixGqAnUBACJcQONh88I6KDbJcCrMtQz9VvQr8nLYtblSXcu69rUgxFcut2yeb91xjuMrcD6DwM22sViMBqjMoeecEQNiwKwrSldNwgxc1Lfw03ys7goZ8Mj48aBvrC0zBe9vw_9V4DWqWFg00dDScre0n-zllgvTXZngaLXAwaKJAKYrKrNwL6cwTWYxoX82kr_yhdbLehsN2X7GcrGUSHkrLkHuXBDhgNPWi--laaZewpIxKDCWksQ-dImUY64ldfGyWeQ&session_state=4f14b146-55c6-4668-ad63-5cfd1ba29751#"
+            const redirectUri = "http://localhost:5500/test.html";
+            console.log(`getAuthCode called, code: ${authCode}, redirectUri: ${redirectUri}`);
+            e.resolve({
+              authCode: authCode,
+              redirectUri: redirectUri
+            })
+          });
+          AuthProvider.subscribe('Auth.ready', () => {
+            console.log("Auth plugin ready");
+          });
+          AuthProvider.subscribe('Auth.authenticated', (jwt,refreshToken) => {
+            console.log("Auth.authenticated");
+          });
+          AuthProvider.subscribe('Auth.authError', (e) => {
+            console.log("Auth.authError");
+            console.log(JSON.stringify(e, null, 4));
+          });
+          AuthProvider.ready();
+        });
+</script>
+
 
 <body>
 
