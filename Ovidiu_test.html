@@ -19,6 +19,12 @@
     deploymentId: 'b947dcec-ac98-44e4-ac8a-1dcb9a242000',
     debug: true
   });
+
+  function open_messenger(){
+    console.log("Messenger open invoked");
+    Genesys("command","Messenger.open");
+    
+  }
 </script>
 
 
@@ -27,7 +33,7 @@
     <h1> Messenger test</h1>
     <p>environment: 'prod-euw2'</p>
     <p>deploymentId: 'b947dcec-ac98-44e4-ac8a-1dcb9a242000'</p>
-    <button id="openMessenger" onclick="">Open Messenger</button>
+    <button id="openMessenger" onclick=open_messenger()>Open Messenger</button>
     <p>Test text</p>
     <p>Test text</p>
     <p>Test text</p>
