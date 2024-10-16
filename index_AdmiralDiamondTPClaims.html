@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <script type="text/javascript" charset="utf-8">
+  (function (g, e, n, es, ys) {
+    g['_genesysJs'] = e;
+    g[e] = g[e] || function () {
+      (g[e].q = g[e].q || []).push(arguments)
+    };
+    g[e].t = 1 * new Date();
+    g[e].c = es;
+    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+    environment: 'euw2',
+    deploymentId: '1b12cefd-0397-4d03-b0f4-77dfa5f034cb',
+    debug: true // optional - Enables Genesys browser console logging
+  });
+</script>
+    <script type="text/javascript" charset="utf-8">
+  Genesys("subscribe", "Launcher.ready" , function(o){
+    console.log("The queue works!");
+  });
+  Genesys("subscribe", "Database.ready", function() {
+  console.log("Database plugin is ready.");
+  document.getElementById("setAttributes").innerHTML = "Set Attributes - I am ready!";
+  
+});
+// message notification
+Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
+    console.log(data);
+    document.getElementById("events").value = "Message received!"
+    document.getElementById("events").style.backgroundColor = "yellow"
+
+});
+
+</script>
+    
+    
+  </head>
+  
+<body>
+  <script type="text/javascript">
+  function toggleMessenger(){
+    console.log("button clicked");
+    Genesys("command", "Messenger.open", {},
+      function(o){},  // if resolved
+      function(o){    // if rejected
+        Genesys("command", "Messenger.close");
+      }
+    );
+  }
+
+  function toggleLauncher(){
+    console.log("launcher toggle invoked")
+    Genesys("command", "Launcher.show",
+{},
+    function() {
+        /*fulfilled callback*/
+    },
+    function() {
+        /*rejected callback*/
+        Genesys("command", "Launcher.hide");
+    }
+);
+  }
+  function sendEvents(){
+    console.log("sendEvents invoked");
+    var brand = document.getElementById("brand").value;
+    var country = document.getElementById("country").value;
+    var language = document.getElementById("language").value;
+    var emailAddress = document.getElementById("emailAddress").value;
+    var baseURL = document.getElementById("baseURL").value;
+
+
+    console.log("Values " + brand + " " + emailAddress + " " + country + " " + language + " " + baseURL);
+
+
+  
+    Genesys("command", "Journey.record", {
+       eventName: "WebMessagingEvent",  customAttributes: { emailAddress: emailAddress, brand: brand, language: language, country: country, baseURL: baseURL }})
+  }
+
+  function setAttributes(){
+    console.log("setAttributes invoked");
+    var emailAddress = document.getElementById("emailAddress").value;
+    var baseURL = document.getElementById("baseURL").value;
+    var debug = document.getElementById("debug").value;
+    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: emailAddress, baseURL: baseURL, debug: debug }}},
+function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
+
+
+  }
+
+  function getBaseURL(){
+    document.getElementById("baseURL").value = window.location.href
+  }
+  function toggleAndSend(){
+    console.log("toggleAndSend invoked")
+    toggleMessenger();
+    sendEvents();
+  }
+  function clearAndReload(){
+    localStorage.clear();
+    window.location.reload();
+  }
+</script>
+<h1>Bell TP Claims: 1f34d76e-4e7f-4bf2-92fc-8f073eccbb07</h1>
+<p>I'm hosted with GitHub Pages._</p>
+<p><a href="index_DST_Lab2.html">LAB2</a></p>
+<p><a href="http://wishboneash.s3-website.eu-west-3.amazonaws.com/">external site</a></p>
+
+<button id="custom-launcher" onclick="toggleLauncher()">
+  Show Launcher
+</button>
+<br>
+
+<button id="custom-messenger" onclick="toggleMessenger()">
+  Toggle Messenger
+</button>
+<br>
+
+emailAddress: <input type="email" id="emailAddress" value="testemail@email.com"><br>
+brand: <input type="text" id="brand" value="Diamond"><br>
+language: <input type="text" id="language" value="EN"><br>
+country: <input type="text" id="country" value="UK"><br>
+baseURL: <input type="text" id="baseURL" value="https://admiral.co.uk"><br>
+debug: <input type="text" id="debug" value="true"><br>
+events: <input type="text" id="events" value=""><br>
+
+<!-- <button id="custom-launcher" onclick="sendEvents()">
+  Send Events
+</button>
+<br> -->
+<button id="setAttributes" onclick="setAttributes()">
+  set attributes - not ready
+</button>
+<br>
+<!-- <button id="custom-launcher2" onclick="toggleAndSend()">
+  Toggle and Send Events
+</button>
+<br> -->
+<button id="populateURL" onclick="getBaseURL()">
+  Populate with current URL
+</button>
+<br>
+<button id="clear-and-reload" onclick="clearAndReload()">
+  Test button - Clear and reload page
+</button>
+
+
+</body>
+</html>
