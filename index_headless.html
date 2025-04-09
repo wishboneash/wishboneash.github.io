@@ -56,6 +56,8 @@ Genesys("subscribe", "MessagingService.ready", function () {
 
 // Listen for incoming messages
 Genesys("subscribe", "MessagingService.messageReceived", function (event) {
+
+    console.log("Message received:", event.data.message.text);
     const message = event.data.message.text;
     const chatWindow = document.getElementById('chatWindow');
     const msgElem = document.createElement('div');
