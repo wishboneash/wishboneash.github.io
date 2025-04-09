@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Custom Messenger UI DST</title>
+    <title>Custom Messenger UI</title>
     <script type="text/javascript" charset="utf-8">
         (function (g, e, n, es, ys) {
           g['_genesysJs'] = e;
@@ -20,6 +20,15 @@
       </script>
 
 <script type="text/javascript">
+
+Genesys("subscribe", "MessagingService.started", function({data}){
+  console.log(data);
+});    
+
+Genesys("subscribe", "MessagingService.error", function({data}){
+    console.log(data);
+});
+
 
 // Wait until the MessagingService plugin is ready
 Genesys("subscribe", "MessagingService.ready", function () {
