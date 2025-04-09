@@ -27,6 +27,7 @@
             console.log("MessagingService is ready.");
 
             document.getElementById('startChat').addEventListener('click', function () {
+                console.log("Start chat button clicked.");
                 Genesys("command", "MessagingService.startConversation", {}, function () {
                     console.log("Conversation start command sent.");
                 }, function (err) {
