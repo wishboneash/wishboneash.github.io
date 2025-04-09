@@ -58,14 +58,21 @@ Genesys("subscribe", "MessagingService.ready", function () {
 Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
 
     console.log("Message received:", data);
+    const outboundMessages = data.messages.filter(message => message.direction === "Outbound");
+    const extractedTexts = outboundMessages.map(message => message.text);
 
-    const message = data.messages[0].text;
-    console.log("Message text:", message);
-
-    const chatWindow = document.getElementById('chatWindow');
-    const msgElem = document.createElement('div');
-    msgElem.textContent = `Agent: ${message}`;
-    chatWindow.appendChild(msgElem);
+    if (extractedTexts.length > 0) {
+        const message = data.messages[0].text;
+        console.log("Message text:", message);
+        const chatWindow = document.getElementById('chatWindow');
+        const msgElem = document.createElement('div');
+        msgElem.textContent = `Agent: ${message}`;
+        chatWindow.appendChild(msgElem);
+        console.log("Extracted texts:", extractedTexts);
+    } else {
+        console.log("No outbound messages found.");
+    }
+    
 });
 
 
