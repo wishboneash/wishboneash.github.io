@@ -19,48 +19,70 @@
         });
       </script>
 
-    <script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
 
+// Wait until the MessagingService plugin is ready
+Genesys("subscribe", "MessagingService.ready", function () {
+    console.log("MessagingService is ready.");
 
-        // Register the MessagingService plugin
-        Genesys("subscribe", "MessagingService.ready", function() {
-            console.log("MessagingService is ready.");
-
-            // Start a conversation when your custom UI triggers it
-            document.getElementById('startChat').addEventListener('click', function() {
-                Genesys("command", "MessagingService.startConversation", {}, function() {
-                    console.log("Conversation started successfully.");
-                }, function(error) {
-                    console.error("Error starting conversation:", error);
-                });
-            });
+    // Start conversation
+    document.getElementById('startChat').addEventListener('click', function () {
+        Genesys("command", "MessagingService.startConversation", {}, function () {
+            console.log("Conversation started.");
+        }, function (err) {
+            console.error("Start conversation failed:", err);
         });
+    });
 
-        // Subscribe to incoming messages
-        Genesys("subscribe", "MessagingService.messageReceived", function(event) {
-            console.log("Message received:", event.data);
-            // Update your custom UI with the received message
+    // Clear conversation
+    document.getElementById('clearChat').addEventListener('click', function () {
+        Genesys("command", "MessagingService.clearConversation", {}, function () {
+            console.log("Conversation cleared.");
+            document.getElementById('chatWindow').innerHTML = '';
+        }, function (err) {
+            console.error("Clear conversation failed:", err);
         });
+    });
+});
 
-        // Function to send a message
-        function sendMessage() {
-            var message = document.getElementById('messageInput').value;
-            Genesys("command", "MessagingService.sendMessage", { text: message }, function() {
-                console.log("Message sent successfully.");
-            }, function(error) {
-                console.error("Error sending message:", error);
-            });
-        }
-    </script>
+// Listen for incoming messages
+Genesys("subscribe", "MessagingService.messageReceived", function (event) {
+    const message = event.data.message.text;
+    const chatWindow = document.getElementById('chatWindow');
+    const msgElem = document.createElement('div');
+    msgElem.textContent = `Agent: ${message}`;
+    chatWindow.appendChild(msgElem);
+});
+
+// Send message
+function sendMessage() {
+    const message = document.getElementById('messageInput').value;
+    if (!message.trim()) return;
+
+    Genesys("command", "MessagingService.sendMessage", { text: message }, function () {
+        const chatWindow = document.getElementById('chatWindow');
+        const msgElem = document.createElement('div');
+        msgElem.textContent = `You: ${message}`;
+        chatWindow.appendChild(msgElem);
+
+        document.getElementById('messageInput').value = '';
+    }, function (err) {
+        console.error("Send message failed:", err);
+    });
+}
+</script>
 </head>
 <body>
-    <div id="customChatUI">
-        <button id="startChat">Start Chat</button>
-        <div id="chatWindow">
-            <!-- Custom chat messages will be displayed here -->
-        </div>
-        <input type="text" id="messageInput" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
+<div id="customChatUI">
+<button id="startChat">Start Chat</button>
+<button id="clearChat">Clear Conversation</button>
+
+<div id="chatWindow" style="border:1px solid #ccc; padding:10px; margin:10px 0; height:200px; overflow-y:auto;">
+    <!-- Messages will appear here -->
+</div>
+
+<input type="text" id="messageInput" placeholder="Type your message..." />
+<button onclick="sendMessage()">Send</button>
+</div>
 </body>
 </html>
