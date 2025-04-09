@@ -64,10 +64,12 @@ function sendMessage() {
         const msgElem = document.createElement('div');
         msgElem.textContent = `You: ${message}`;
         chatWindow.appendChild(msgElem);
+        console.log("Send message success");
 
         document.getElementById('messageInput').value = '';
     }, function (err) {
         console.error("Send message failed:", err);
+        console.log("Send message failed");
     });
 }
 </script>
