@@ -19,16 +19,8 @@
         });
       </script>
 
+    <script type="text/javascript" charset="utf-8">
 
-    <script src="https://apps.mypurecloud.de/messenger/sdk/genesys-messenger.min.js"></script>
-    <script>
-        // Initialize the Messenger with your deployment ID
-        window._genesys = {
-            messenger: {
-                deploymentId: '74c21148-3dd7-4d64-ba92-2a250fc7aa94',
-                // Additional configuration options
-            }
-        };
 
         // Register the MessagingService plugin
         Genesys("subscribe", "MessagingService.ready", function() {
