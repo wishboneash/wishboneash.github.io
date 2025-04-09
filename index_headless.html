@@ -55,19 +55,16 @@ Genesys("subscribe", "MessagingService.ready", function () {
 });
 
 // Listen for incoming messages
-/*Genesys("subscribe", "MessagingService.messageReceived", function ({data}) {
+Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
 
     console.log("Message received:", data);
-    const message = event.data.message.text;
+    const message = data.message[0].text;
     const chatWindow = document.getElementById('chatWindow');
     const msgElem = document.createElement('div');
     msgElem.textContent = `Agent: ${data}`;
     chatWindow.appendChild(msgElem);
 });
-*/
-Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
-    console.log(data);
-});
+
 
 // Send message
 function sendMessage() {
