@@ -58,10 +58,13 @@ Genesys("subscribe", "MessagingService.ready", function () {
 Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
 
     console.log("Message received:", data);
+
     const message = data.message[0].text;
+    console.log("Message text:", message);
+
     const chatWindow = document.getElementById('chatWindow');
     const msgElem = document.createElement('div');
-    msgElem.textContent = `Agent: ${data}`;
+    msgElem.textContent = `Agent: ${message}`;
     chatWindow.appendChild(msgElem);
 });
 
