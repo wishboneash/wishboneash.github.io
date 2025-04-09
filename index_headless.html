@@ -59,7 +59,7 @@ Genesys("subscribe", "MessagingService.messagesReceived", function({ data }) {
 
     console.log("Message received:", data);
 
-    const message = data.message[0].text;
+    const message = data.messages[0].text;
     console.log("Message text:", message);
 
     const chatWindow = document.getElementById('chatWindow');
