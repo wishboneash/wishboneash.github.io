@@ -68,7 +68,7 @@ function sendMessage() {
     const message = document.getElementById('messageInput').value;
     if (!message.trim()) return;
 
-    Genesys("command", "MessagingService.sendMessage", { text: message }, function () {
+    Genesys("command", "MessagingService.sendMessage", { message: message }, function () {
         const chatWindow = document.getElementById('chatWindow');
         const msgElem = document.createElement('div');
         msgElem.textContent = `You: ${message}`;
