@@ -55,13 +55,13 @@ Genesys("subscribe", "MessagingService.ready", function () {
 });
 
 // Listen for incoming messages
-Genesys("subscribe", "MessagingService.messageReceived", function (event) {
+Genesys("subscribe", "MessagingService.messageReceived", function ({data}) {
 
-    console.log("Message received:", event.data.message.text);
+    console.log("Message received:", data);
     const message = event.data.message.text;
     const chatWindow = document.getElementById('chatWindow');
     const msgElem = document.createElement('div');
-    msgElem.textContent = `Agent: ${message}`;
+    msgElem.textContent = `Agent: ${data}`;
     chatWindow.appendChild(msgElem);
 });
 
