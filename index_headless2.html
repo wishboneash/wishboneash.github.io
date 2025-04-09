@@ -7,12 +7,7 @@
     <script>
         let conversationStarted = false;
 
-        window._genesys = {
-            messenger: {
-                deploymentId: '74c21148-3dd7-4d64-ba92-2a250fc7aa94', // <-- Replace this
-                debug: true
-            }
-        };
+        // Initialize Genesys Web Messenger
 
         (function (g, e, n, es, ys) {
           g['_genesysJs'] = e;
@@ -35,7 +30,7 @@
                 Genesys("command", "MessagingService.startConversation", {}, function () {
                     console.log("Conversation start command sent.");
                 }, function (err) {
-                    console.error("Start conversation failed:", err);
+                    console.log("Start conversation failed:", err);
                 });
             });
 
@@ -50,8 +45,8 @@
             });
         });
 
-        Genesys("subscribe", "MessagingService.started", function () {
-            console.log("Conversation officially started.");
+        Genesys("subscribe", "MessagingService.started", function ({data}) {
+            console.log("Conversation officially started.", data);
             conversationStarted = true;
             const chatWindow = document.getElementById('chatWindow');
             const msgElem = document.createElement('div');
@@ -69,7 +64,7 @@
         });
 
         Genesys("subscribe", "MessagingService.error", function (error) {
-            console.error("MessagingService error occurred:", error);
+            console.log("MessagingService error occurred:", error);
             const chatWindow = document.getElementById('chatWindow');
             const msgElem = document.createElement('div');
             msgElem.textContent = `[Error]: ${error.message || 'Unknown error'}`;
@@ -82,7 +77,7 @@
             if (!message.trim()) return;
 
             if (!conversationStarted) {
-                console.warn("Conversation hasn't started yet.");
+                console.log("Conversation hasn't started yet.");
                 alert("Please start the conversation first.");
                 return;
             }
