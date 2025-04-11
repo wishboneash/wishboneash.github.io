@@ -95,6 +95,75 @@ function sendMessage() {
     });
 }
 </script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+    }
+
+    #customChatUI {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #customChatUI button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    #customChatUI button:hover {
+        background-color: #0056b3;
+    }
+
+    #chatWindow {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+        height: 300px;
+        overflow-y: auto;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+
+    #chatWindow div {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 4px;
+    }
+
+    #chatWindow div:nth-child(odd) {
+        background-color: #e9ecef;
+    }
+
+    #chatWindow div:nth-child(even) {
+        background-color: #d4edda;
+    }
+
+    #messageInput {
+        width: calc(100% - 100px);
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    #customChatUI button:last-child {
+        width: 80px;
+    }
+</style>
 </head>
 <body>
 <div id="customChatUI">
