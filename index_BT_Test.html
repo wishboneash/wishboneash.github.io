@@ -64,7 +64,8 @@
   function setAttributes(){
     console.log("setAttributes invoked");
     var emailAddress = document.getElementById("emailAddress").value;
-    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: emailAddress }}},
+    var entryPoint = document.getElementById("entryPoint").value;
+    Genesys("command", "Database.set", { messaging: { customAttributes: { emailAddress: emailAddress, entryPoint: entryPoint }}},
 function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
 
 
@@ -89,10 +90,11 @@ function(data){ /* fulfilled, returns data */}, function(){ /* rejected */ });
 </button>
 <br>
 <input type="email" id="emailAddress" value="testemail@email.com"><br>
-<input type="text" id="brand" value="admiral"><br>
+<input type="text" id="entryPoint" value="BTW PSTN"><br>
+<input type="text" id="brand" value="BT"><br>
 <input type="text" id="language" value="EN"><br>
 <input type="text" id="country" value="UK"><br>
-<input type="text" id="baseURL" value="https://admiral.co.uk"><br>
+<input type="text" id="baseURL" value="https://"><br>
 
 <button id="custom-launcher" onclick="sendEvents()">
   Send Events
